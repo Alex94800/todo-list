@@ -39,7 +39,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="todo in todos">
+              <tr v-for="todo in unarchivedList">
                 <td>{{todo.name}}</td>
                 <td>
                   <div class="form-check">
@@ -77,13 +77,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="archivedTodo in archivedTodos">
-                <td>{{archivedTodo.name}}</td>
+              <tr v-for="todo in archivedList">
+                <td>{{todo.name}}</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
+
       </div>
     </div>
   </div>
@@ -99,9 +100,18 @@ export default {
   data () {
     return {
       todos: [],
-      archivedTodos: [],
       newTodo: "",
       viewArchive: false
+    }
+  },
+  computed:{
+
+    archivedList(){
+      return this.todos.filter(todo => todo.isArchived == true)
+    },
+
+    unarchivedList(){
+      return this.todos.filter(todo => todo.isArchived == false)
     }
   },
 
@@ -111,7 +121,8 @@ export default {
       if(this.newTodo){
         this.todos.push({
           name: this.newTodo,
-          isDone: false
+          isDone: false,
+          isArchived: false
         })
         this.newTodo = ""
       }
@@ -134,8 +145,9 @@ export default {
         window.alert("Impossible d'archiver une tache en cours.")
       }
       else{
-        this.archivedTodos.push(todo)
-        this.todos.splice(this.todos.indexOf(todo), 1)
+
+        todo.isArchived = true
+
       }
     }
   }
