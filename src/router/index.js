@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import ActiveList from '@/components/ActiveList'
-import ArchivedList from '@/components/ArchivedList'
-import CompleteList from '@/components/CompleteList'
+import TodoList from '@/components/CompleteList'
 
 
 Vue.use(VueRouter)
@@ -13,18 +11,21 @@ export default new VueRouter({
 		{
 			path: '/',
 			name: 'activeTodos',
-			component: ActiveList
+			component: TodoList,
+			props: {active: true, archived: false}
 		},
 
 		{
 			path: '/archived',
 			name: 'archivedTodos',
-			component: ArchivedList
+			component: TodoList,
+			props: {active: false, archived: true}
 		},		
 		{
 			path: '/all',
 			name: 'allTodos',
-			component: CompleteList
+			component: TodoList,
+			props: {active: true, archived: true}
 		},
 		{
 			path: '*',

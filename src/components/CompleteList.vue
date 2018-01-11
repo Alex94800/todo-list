@@ -1,6 +1,7 @@
 <template>
   <div>
-      <div class="row">
+      <div class="row"
+      v-if="active">
         <div class="col-sm-10 col-sm-offset-1 text-center">
           <br>
           <table class="table">
@@ -48,7 +49,7 @@
       </div>
 
       <div class="row"
-      >
+      v-if="archived">
         <div class="col-xs-10 col-xs-offset-1 text-center">
           <br>
           <table class="table">
@@ -73,6 +74,9 @@
 
 <script>
 export default {
+
+  props: ['active', 'archived'],
+
   data () {
     return {
       todos: [],
