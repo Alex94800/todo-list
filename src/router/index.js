@@ -12,20 +12,44 @@ export default new VueRouter({
 			path: '/',
 			name: 'activeTodos',
 			component: TodoList,
-			props: {active: true, archived: false}
+			props: {
+				status: {
+					type: String,
+					required: true,
+					validator: function () {
+						return 'active'
+					}
+				}
+			}
 		},
 
 		{
 			path: '/archived',
 			name: 'archivedTodos',
 			component: TodoList,
-			props: {active: false, archived: true}
+            props: {
+                status: {
+                    type: String,
+                    required: true,
+                    validator: function () {
+                    	return 'archived'
+                    }
+                }
+            }
 		},		
 		{
 			path: '/all',
 			name: 'allTodos',
 			component: TodoList,
-			props: {active: true, archived: true}
+            props: {
+                status: {
+                    type: String,
+                    required: true,
+                    validator: function () {
+                    	return 'all'
+                    }
+                }
+            }
 		},
 		{
 			path: '*',

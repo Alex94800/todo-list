@@ -1,3 +1,6 @@
+import Vue from 'vue'
+
+
 <template>
   <div id="app">
   	
@@ -30,9 +33,12 @@
 
 <script>
 
+    import addingBar from './components/AddingBar'
 
 export default {
+
   name: 'app',
+
   data(){
   	return{
   		todos: [],
@@ -41,24 +47,28 @@ export default {
 
   },
 
+    methods: {
 
-  methods: {
+        addTodo(){
+            if(this.newTodo){
+                this.todos.push({
+                    name: this.newTodo,
+                    isDone: false,
+                    isArchived: false
+                })
+                this.newTodo = ""
+            }
+            else{
+                window.alert("Entrez une tache")
+            }
 
-    addTodo(){
-      if(this.newTodo){
-        this.todos.push({
-          name: this.newTodo,
-          isDone: false,
-          isArchived: false
-        })
-        this.newTodo = ""
-      }
-      else{
-        window.alert("Entrez une tache")
-      }
-
+        },
     },
-	}
+
+    components: {
+      'adding-bar': addingBar
+    }
+
 }
 </script>
 

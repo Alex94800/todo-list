@@ -1,7 +1,7 @@
 <template>
   <div>
       <div class="row"
-      v-if="active">
+      v-if="showActive">
         <div class="col-sm-10 col-sm-offset-1 text-center">
           <br>
           <table class="table">
@@ -49,7 +49,7 @@
       </div>
 
       <div class="row"
-      v-if="archived">
+      v-if="showArchived">
         <div class="col-xs-10 col-xs-offset-1 text-center">
           <br>
           <table class="table">
@@ -75,7 +75,7 @@
 <script>
 export default {
 
-  props: ['active', 'archived'],
+  props: ['status'],
 
   data () {
     return {
@@ -84,6 +84,18 @@ export default {
     }
   },
   computed:{
+
+      showArchived(){
+          if (this.status.validator() === "archived" || this.status.validator() === "all"){
+              return true
+          }
+      },
+
+      showActive(){
+          if (this.status.validator() === "active" || this.status.validator() === "all"){
+              return true
+          }
+      },
 
     archivedList(){
       return this.$parent.todos.filter(todo => todo.isArchived)
