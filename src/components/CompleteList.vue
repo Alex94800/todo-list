@@ -1,31 +1,6 @@
 <template>
   <div>
-
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand">Todo List</a>
-        </div>
-        <ul class="nav navbar-nav">
-          <li><a href="#" @click="viewArchive = false">Liste actuelle</a></li>
-          <li><a href="#" @click="viewArchive = true">Taches archivées</a></li>
-        </ul>
-      </div>
-    </nav>
-
-    <div class="container">
-
-      <div class="row" v-if="!viewArchive">
-        <div class="col-sm-6 col-sm-offset-2">
-          <input class="form-control" type="text" placeholder="Ajouter tache" v-model="newTodo" @keyup.enter="addTodo()">
-        </div>
-        <div class="col-md-4">
-          <button class="btn btn-primary" @click="addTodo()">Ajouter</button>
-          </button>
-        </div>
-      </div>
-
-      <div class="row" v-if="!viewArchive">
+      <div class="row">
         <div class="col-sm-10 col-sm-offset-1 text-center">
           <br>
           <table class="table">
@@ -39,25 +14,30 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="todo in unarchivedList">
+              <tr 
+              v-for="todo in unarchivedList">
                 <td>{{todo.name}}</td>
                 <td>
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" v-model="todo.isDone">
+                    <input class="form-check-input" type="checkbox" 
+                    v-model="todo.isDone">
                   </div>
                 </td>
                 <td>
-                  <button class="btn btn-xs btn-primary" @click="modifyTodo(todo)">
+                  <button class="btn btn-xs btn-primary" 
+                  @click="modifyTodo(todo)">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>           
                   </button>
                 </td>
                 <td>
-                  <button class="btn btn-xs btn-danger" @click="destroyTodo(todo)">
+                  <button class="btn btn-xs btn-danger" 
+                  @click="destroyTodo(todo)">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>           
                   </button>
                 </td>
                 <td>
-                  <button class="btn btn-xs btn-warning" @click="archiveTodo(todo)">
+                  <button class="btn btn-xs btn-warning" 
+                  @click="archiveTodo(todo)">
                     <span class="glyphicon glyphicon-download" aria-hidden="true"></span>           
                   </button>
                 </td>
@@ -67,7 +47,8 @@
         </div>
       </div>
 
-      <div class="row" v-if="viewArchive">
+      <div class="row"
+      >
         <div class="col-xs-10 col-xs-offset-1 text-center">
           <br>
           <table class="table">
@@ -77,7 +58,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="todo in archivedList">
+              <tr 
+              v-for="todo in archivedList">
                 <td>{{todo.name}}</td>
               </tr>
             </tbody>
@@ -85,33 +67,26 @@
         </div>
       </div>
 
-      </div>
-    </div>
   </div>
 </template>
-<style>
-.container{
-  margin-top: 80px;
-}
-</style>
+
 
 <script>
 export default {
   data () {
     return {
       todos: [],
-      newTodo: "",
-      viewArchive: false
+      newTodo: ""
     }
   },
   computed:{
 
     archivedList(){
-      return this.todos.filter(todo => todo.isArchived == true)
+      return this.$parent.todos.filter(todo => todo.isArchived)
     },
 
     unarchivedList(){
-      return this.todos.filter(todo => todo.isArchived == false)
+      return this.$parent.todos.filter(todo => !todo.isArchived)
     }
   },
 
@@ -133,7 +108,7 @@ export default {
     },
 
     destroyTodo(todo){
-      this.todos.splice(this.todos.indexOf(todo), 1)
+      this.$parent.todos.splice(this.$parent.todos.indexOf(todo), 1)
     },
 
     modifyTodo(todo){
