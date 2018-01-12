@@ -26,19 +26,19 @@
                 </td>
                 <td>
                   <button class="btn btn-xs btn-primary" 
-                  @click="modifyTodo(todo)">
+                  @click="store.modifyTodo(todo)">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>           
                   </button>
                 </td>
                 <td>
                   <button class="btn btn-xs btn-danger" 
-                  @click="destroyTodo(todo)">
+                  @click="store.destroyTodo(todo)">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>           
                   </button>
                 </td>
                 <td>
                   <button class="btn btn-xs btn-warning" 
-                  @click="archiveTodo(todo)">
+                  @click="store.archiveTodo(todo)">
                     <span class="glyphicon glyphicon-download" aria-hidden="true"></span>           
                   </button>
                 </td>
@@ -81,7 +81,8 @@ export default {
 
   data () {
       return {
-          state: store.state
+          store,
+          //state: store.state
     }
   },
 
@@ -100,13 +101,14 @@ export default {
       },
 
       archivedList(){
-          return this.state.list.filter(todo => todo.isArchived)
+          return store.state.list.filter(todo => todo.isArchived)
       },
 
       unarchivedList(){
-          return this.state.list.filter(todo => !todo.isArchived)
+          return store.state.list.filter(todo => !todo.isArchived)
       }
   },
+    /*
 
   methods:{
 
@@ -121,7 +123,7 @@ export default {
       archiveTodo(todo){
           store.archiveTodo(todo)
       }
-    }
+    }*/
 }
 </script>
 

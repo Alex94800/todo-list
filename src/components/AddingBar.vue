@@ -9,7 +9,7 @@
             </div>
             <div class="col-md-4">
                 <button class="btn btn-primary"
-                        @click="addTodo">Ajouter</button>
+                        @click="store.addTodo()">Ajouter</button>
                 </button>
             </div>
         </div>
@@ -26,7 +26,7 @@
 
         data(){
             return{
-                state: store.state,
+                store,
                 newTodo: ""
             }
         },
