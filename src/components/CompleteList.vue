@@ -67,22 +67,24 @@
           </table>
         </div>
       </div>
-
   </div>
 </template>
 
 
 <script>
+
+    import store from '../store.js'
+
 export default {
 
   props: ['status'],
 
   data () {
-    return {
-      todos: [],
-      newTodo: ""
+      return {
+          state: store.state
     }
   },
+
   computed:{
 
       showArchived(){
@@ -97,51 +99,29 @@ export default {
           }
       },
 
-    archivedList(){
-      return this.$parent.todos.filter(todo => todo.isArchived)
-    },
+      archivedList(){
+          return this.state.list.filter(todo => todo.isArchived)
+      },
 
-    unarchivedList(){
-      return this.$parent.todos.filter(todo => !todo.isArchived)
-    }
+      unarchivedList(){
+          return this.state.list.filter(todo => !todo.isArchived)
+      }
   },
 
   methods:{
 
-    addTodo(){
-      if(this.newTodo){
-        this.todos.push({
-          name: this.newTodo,
-          isDone: false,
-          isArchived: false
-        })
-        this.newTodo = ""
-      }
-      else{
-        window.alert("Entrez une tache")
-      }
+      destroyTodo(todo){
+          store.destroyTodo(todo)
+        },
 
-    },
+      modifyTodo(todo){
+          store.modifyTodo(todo)
+      },
 
-    destroyTodo(todo){
-      this.$parent.todos.splice(this.$parent.todos.indexOf(todo), 1)
-    },
-
-    modifyTodo(todo){
-      todo.name = prompt("Entrez un nouveau nom pour la tache")
-    },
-
-    archiveTodo(todo){
-      if(!todo.isDone){
-        window.alert("Impossible d'archiver une tache en cours.")
-      }
-      else{
-
-        todo.isArchived = true
-
+      archiveTodo(todo){
+          store.archiveTodo(todo)
       }
     }
-  }
 }
 </script>
 

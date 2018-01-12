@@ -16,7 +16,7 @@ export default new VueRouter({
 				status: {
 					type: String,
 					required: true,
-					validator: function () {
+					validator: function (isDone, isArchived) {
 						return 'active'
 					}
 				}
