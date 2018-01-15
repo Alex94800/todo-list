@@ -1,25 +1,30 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import TodoList from '@/components/CompleteList'
-
+import AddTask from '@/components/AddTask'
+import ModifyTask from '@/components/ModifyTask'
 
 Vue.use(VueRouter)
 
 export default new VueRouter({
 	mode: "history",
 	routes: [
+        {
+            path: '/add',
+            name: 'addTask',
+            component: AddTask,
+        },
+        {
+            path: '/modify/:id',
+            name: 'modifyTask',
+            component: ModifyTask,
+        },
 		{
 			path: '/',
 			name: 'activeTodos',
 			component: TodoList,
 			props: {
-				status: {
-					type: String,
-					required: true,
-					validator: function (isDone, isArchived) {
-						return 'active'
-					}
-				}
+				status: 'active'
 			}
 		},
 
@@ -28,13 +33,7 @@ export default new VueRouter({
 			name: 'archivedTodos',
 			component: TodoList,
             props: {
-                status: {
-                    type: String,
-                    required: true,
-                    validator: function () {
-                    	return 'archived'
-                    }
-                }
+                status: 'archived'
             }
 		},		
 		{
@@ -42,13 +41,7 @@ export default new VueRouter({
 			name: 'allTodos',
 			component: TodoList,
             props: {
-                status: {
-                    type: String,
-                    required: true,
-                    validator: function () {
-                    	return 'all'
-                    }
-                }
+                status: 'all'
             }
 		},
 		{

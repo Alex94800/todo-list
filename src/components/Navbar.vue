@@ -3,7 +3,7 @@
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand">Todo List</a>
+                    <router-link to="/"><a class="navbar-brand">Todo List</a></router-link>
                 </div>
                 <ul class="nav navbar-nav">
                     <li><router-link :to="{name: 'activeTodos'}">Liste active</router-link></li>

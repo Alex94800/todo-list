@@ -1,11 +1,7 @@
-import Vue from 'vue'
-
-
 <template>
   <div id="app">
 
     <navbar></navbar>
-    <adding-bar></adding-bar>
     <router-view></router-view>
 
   </div>
@@ -19,18 +15,19 @@ import Vue from 'vue'
 
 <script>
 
-    import addingBar from './components/AddingBar'
     import navbar from './components/Navbar'
+
 
     export default {
 
-    name: 'app',
 
-    components: {
-        'adding-bar': addingBar,
-        'navbar': navbar
+        name: 'app',
 
-    }
+        components: {
+
+            'navbar': navbar
+
+        }
 
 }
 </script>

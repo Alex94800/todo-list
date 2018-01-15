@@ -1,5 +1,8 @@
 <template>
   <div>
+    <br><br>
+
+    <router-link to="/add" class="col-sm-1 col-sm-offset-1 btn btn-primary">Ajouter tache</router-link>
       <div class="row"
       v-if="showActive">
         <div class="col-sm-10 col-sm-offset-1 text-center">
@@ -25,20 +28,19 @@
                   </div>
                 </td>
                 <td>
-                  <button class="btn btn-xs btn-primary" 
-                  @click="store.modifyTodo(todo)">
+                  <router-link :to="'modify/' + store.todoList.indexOf(todo)" class="btn btn-xs btn-primary">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>           
-                  </button>
+                  </router-link>
                 </td>
                 <td>
                   <button class="btn btn-xs btn-danger" 
-                  @click="store.destroyTodo(todo)">
+                  @click="destroyTodo(todo)">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>           
                   </button>
                 </td>
                 <td>
                   <button class="btn btn-xs btn-warning" 
-                  @click="store.archiveTodo(todo)">
+                  @click="archiveTodo(todo)">
                     <span class="glyphicon glyphicon-download" aria-hidden="true"></span>           
                   </button>
                 </td>
@@ -73,11 +75,25 @@
 
 <script>
 
-    import store from '../store.js'
+    import store from '../config/store.js'
 
 export default {
 
-  props: ['status'],
+  props: {
+      status:{
+          type: String,
+          default: "active",
+          validator(status){
+              if (status === "active" || status === "archived" || status === "all"){
+                  return true
+              }
+              else{
+                  return false
+              }
+
+          }
+      }
+  },
 
   data () {
       return {
@@ -86,44 +102,50 @@ export default {
     }
   },
 
+
   computed:{
 
       showArchived(){
-          if (this.status.validator() === "archived" || this.status.validator() === "all"){
+          if (this.status === "archived" || this.status === "all"){
               return true
           }
       },
 
       showActive(){
-          if (this.status.validator() === "active" || this.status.validator() === "all"){
+          if (this.status === "active" || this.status === "all"){
               return true
           }
       },
 
       archivedList(){
-          return store.state.list.filter(todo => todo.isArchived)
+          return store.todoList.filter(todo => todo.isArchived)
       },
 
       unarchivedList(){
-          return store.state.list.filter(todo => !todo.isArchived)
+          return store.todoList.filter(todo => !todo.isArchived)
       }
   },
-    /*
+
 
   methods:{
 
       destroyTodo(todo){
-          store.destroyTodo(todo)
+          store.todoList.splice(store.todoList.indexOf(todo), 1)
         },
 
       modifyTodo(todo){
-          store.modifyTodo(todo)
+          todo.name = prompt("Entrez un nouveau nom pour la tache")
       },
 
       archiveTodo(todo){
-          store.archiveTodo(todo)
+          if (!todo.isDone) {
+              window.alert("Impossible d'archiver une tache en cours.")
+          }
+          else {
+              todo.isArchived = true
+          }
       }
-    }*/
+    }
 }
 </script>
 
