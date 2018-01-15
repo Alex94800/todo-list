@@ -15,7 +15,7 @@ export default new VueRouter({
             component: AddTask,
         },
         {
-            path: '/modify/:id',
+            path: '/modify/:id(\d+)',
             name: 'modifyTask',
             component: ModifyTask,
         },
