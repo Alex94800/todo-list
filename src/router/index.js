@@ -7,6 +7,7 @@ import ModifyTask from '@/components/ModifyTask'
 Vue.use(VueRouter)
 
 export default new VueRouter({
+
 	mode: "history",
 	routes: [
         {

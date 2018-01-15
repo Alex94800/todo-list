@@ -75,7 +75,7 @@
 
 <script>
 
-    import store from '../config/store.js'
+import store from '../config/store.js'
 
 export default {
 
@@ -84,11 +84,12 @@ export default {
           type: String,
           default: "active",
           validator(status){
-              if (status === "active" || status === "archived" || status === "all"){
-                  return true
+
+              if (["active", "archived", "all"].indexOf(status) === -1){
+                  return false
               }
               else{
-                  return false
+                  return true
               }
 
           }
@@ -98,10 +99,8 @@ export default {
   data () {
       return {
           store,
-          //state: store.state
     }
   },
-
 
   computed:{
 
@@ -126,16 +125,11 @@ export default {
       }
   },
 
-
   methods:{
 
       destroyTodo(todo){
           store.todoList.splice(store.todoList.indexOf(todo), 1)
         },
-
-      modifyTodo(todo){
-          todo.name = prompt("Entrez un nouveau nom pour la tache")
-      },
 
       archiveTodo(todo){
           if (!todo.isDone) {
@@ -145,7 +139,7 @@ export default {
               todo.isArchived = true
           }
       }
-    }
+  }
 }
 </script>
 
