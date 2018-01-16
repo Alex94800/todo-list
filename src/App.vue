@@ -18,10 +18,10 @@
 
     export default {
 
-        name: 'app',
-        components: {
-            'navbar': navbar
-        }
+      name: 'app',
+      components: {
+        'navbar': navbar
+      }
 }
 </script>
 

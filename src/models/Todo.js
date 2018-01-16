@@ -1,36 +1,33 @@
-class Todo{
+class Todo {
+  constructor (name) {
+    this.name = name
+    this.isDone = false
+    this.isArchived = false
+  }
 
-    constructor(name){
+  getName () {
+    return this.name
+  }
 
-        this.name = name
-        this.isDone = false
-        this.isArchived = false
-    }
+  setName (name) {
+    this.name = name
+  }
 
-    getName(){
-        return this.name
-    }
+  getIsDone () {
+    return this.isDone
+  }
 
-    setName(name){
-        this.name = name
-    }
+  setIsDone (value) {
+    this.isDone = value
+  }
 
-    getIsDone(){
-        return this.isDone
-    }
+  getIsArchived () {
+    return this.isArchived
+  }
 
-    setIsDone(value){
-        this.isDone = value
-    }
-
-    getIsArchived(){
-        return this.isArchived
-    }
-
-    setIsArchived(value){
-        this.isArchived = value
-    }
-
+  setIsArchived (value) {
+    this.isArchived = value
+  }
 }
 
 export default Todo

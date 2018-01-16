@@ -1,6 +1,6 @@
-let store = {
+const store = {
 
-    todoList: []
+  todoList: []
 
 }
 

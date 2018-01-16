@@ -25,28 +25,26 @@
 </template>
 
 <script>
-
-    import store from "../config/store.js"
-    import Todo from "../models/Todo.js"
+    import store from '../config/store.js'
+    import Todo from '../models/Todo.js'
 
     export default {
 
-        data(){
-            return{
-                store,
-                todoName: ''
-            }
-        },
-
-        methods: {
-            addTodo(){
-                store.todoList.push(new Todo(this.todoName))
-                this.todoName = ""
-                this.$router.push('/')
-            }
+      data () {
+        return {
+          store,
+          todoName: ''
         }
+      },
+
+      methods: {
+        addTodo () {
+          store.todoList.push(new Todo(this.todoName))
+          this.todoName = ''
+          this.$router.push('/')
+        }
+      }
 
     }
-
 
 </script>

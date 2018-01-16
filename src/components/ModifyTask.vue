@@ -26,23 +26,22 @@
 </template>
 
 <script>
-
     import store from '../config/store.js'
 
     export default {
-        data(){
-            return{
-                store,
-                newName: ''
-            }
-        },
-
-        methods:{
-            modifyTodo(){
-                store.todoList[this.$route.params.id].setName(this.newName)
-                this.$router.push('/')
-            }
+      data () {
+        return {
+          store,
+          newName: ''
         }
+      },
+
+      methods: {
+        modifyTodo () {
+          store.todoList[this.$route.params.id].setName(this.newName)
+          this.$router.push('/')
+        }
+      }
 
     }
 </script>

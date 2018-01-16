@@ -78,55 +78,52 @@ import store from '../config/store.js'
 export default {
 
   props: {
-      status:{
-          type: String,
-          default: "active",
-          validator(status){
-
-              if (["active", "archived", "all"].indexOf(status) === -1){
-                  return false
-              }
-              else{
-                  return true
-              }
-
-          }
+    status: {
+      type: String,
+      default: 'active',
+      validator (status) {
+        if (['active', 'archived', 'all'].indexOf(status) === -1) {
+          return false
+        } else {
+          return true
+        }
       }
-  },
-
-  data () {
-      return {
-          store,
     }
   },
 
-  computed:{
-      showArchived(){
-          if (this.status === "archived" || this.status === "all"){
-              return true
-          }
-      },
-
-      showActive(){
-          if (this.status === "active" || this.status === "all"){
-              return true
-          }
-      },
-
-      archivedList(){
-          return store.todoList.filter(todo => todo.getIsArchived())
-      },
-
-      unarchivedList(){
-          return store.todoList.filter(todo => !todo.getIsArchived())
-      }
+  data () {
+    return {
+      store
+    }
   },
 
-  methods:{
+  computed: {
+    showArchived () {
+      if (this.status === 'archived' || this.status === 'all') {
+        return true
+      }
+    },
 
-      destroyTodo(todo){
-          store.todoList.splice(store.todoList.indexOf(todo), 1)
-        }
+    showActive () {
+      if (this.status === 'active' || this.status === 'all') {
+        return true
+      }
+    },
+
+    archivedList () {
+      return store.todoList.filter(todo => todo.getIsArchived())
+    },
+
+    unarchivedList () {
+      return store.todoList.filter(todo => !todo.getIsArchived())
+    }
+  },
+
+  methods: {
+
+    destroyTodo (todo) {
+      store.todoList.splice(store.todoList.indexOf(todo), 1)
+    }
   }
 }
 </script>

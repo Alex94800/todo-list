@@ -8,45 +8,45 @@ Vue.use(VueRouter)
 
 export default new VueRouter({
 
-	mode: "history",
-	routes: [
-        {
-            path: '/',
-            component: CompleteList,
-            props: {
-                status: 'active'
-            }
-        },
-        {
-            path: '/add',
-            name: 'addTask',
-            component: AddTask,
-        },
-        {
-            path: '/modify/:id(\\d+)',
-            name: 'modifyTask',
-            component: ModifyTask,
-        },
-		{
-			path: '/archived',
-			name: 'archivedTodos',
-			component: CompleteList,
-            props: {
-                status: 'archived'
-            }
-		},
-		{
-			path: '/all',
-			name: 'allTodos',
-			component: CompleteList,
-            props: {
-                status: 'all'
-            }
-		},
-		{
-			path: '*',
-			redirect: '/'
-		},
+  mode: 'history',
+  routes: [
+    {
+      path: '/',
+      component: CompleteList,
+      props: {
+        status: 'active'
+      }
+    },
+    {
+      path: '/add',
+      name: 'addTask',
+      component: AddTask
+    },
+    {
+      path: '/modify/:id(\\d+)',
+      name: 'modifyTask',
+      component: ModifyTask
+    },
+    {
+      path: '/archived',
+      name: 'archivedTodos',
+      component: CompleteList,
+      props: {
+        status: 'archived'
+      }
+    },
+    {
+      path: '/all',
+      name: 'allTodos',
+      component: CompleteList,
+      props: {
+        status: 'all'
+      }
+    },
+    {
+      path: '*',
+      redirect: '/'
+    }
 
-	]
+  ]
 })
