@@ -6,7 +6,7 @@
                     <router-link to="/"><a class="navbar-brand">Todo List</a></router-link>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li><router-link :to="{name: 'activeTodos'}">Liste active</router-link></li>
+                    <li><router-link :to="{path: '/'}">Liste active</router-link></li>
                     <li><router-link :to="{name: 'archivedTodos'}">Liste archivée</router-link></li>
                     <li><router-link :to="{name: 'allTodos'}">Liste complète</router-link></li>
                 </ul>

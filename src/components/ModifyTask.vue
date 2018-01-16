@@ -15,7 +15,6 @@
                 <button class="btn btn-primary"
                 @click="modifyTodo">Modifier</button>
                 </button>
-
                 <router-link to="/">
                     <button class="btn btn-danger">Retour</button>
                     </button>
@@ -40,11 +39,10 @@
 
         methods:{
             modifyTodo(){
-                store.todoList[this.$route.params.id].name = this.newName
+                store.todoList[this.$route.params.id].setName(this.newName)
                 this.$router.push('/')
             }
         }
 
     }
 </script>
-

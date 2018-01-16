@@ -20,11 +20,10 @@
             <tbody>
               <tr 
               v-for="todo in unarchivedList">
-                <td>{{todo.name}}</td>
+                <td>{{todo.getName()}}</td>
                 <td>
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" 
-                    v-model="todo.isDone">
+                    <input class="form-check-input" type="checkbox" :checked="todo.getIsDone()" @click="todo.setIsDone(!todo.getIsDone())">
                   </div>
                 </td>
                 <td>
@@ -40,7 +39,7 @@
                 </td>
                 <td>
                   <button class="btn btn-xs btn-warning" 
-                  @click="archiveTodo(todo)">
+                  @click="todo.setIsArchived(true)">
                     <span class="glyphicon glyphicon-download" aria-hidden="true"></span>           
                   </button>
                 </td>
@@ -63,7 +62,7 @@
             <tbody>
               <tr 
               v-for="todo in archivedList">
-                <td>{{todo.name}}</td>
+                <td>{{todo.getName()}}</td>
               </tr>
             </tbody>
           </table>
@@ -71,7 +70,6 @@
       </div>
   </div>
 </template>
-
 
 <script>
 
@@ -103,7 +101,6 @@ export default {
   },
 
   computed:{
-
       showArchived(){
           if (this.status === "archived" || this.status === "all"){
               return true
@@ -117,11 +114,11 @@ export default {
       },
 
       archivedList(){
-          return store.todoList.filter(todo => todo.isArchived)
+          return store.todoList.filter(todo => todo.getIsArchived())
       },
 
       unarchivedList(){
-          return store.todoList.filter(todo => !todo.isArchived)
+          return store.todoList.filter(todo => !todo.getIsArchived())
       }
   },
 
@@ -129,16 +126,7 @@ export default {
 
       destroyTodo(todo){
           store.todoList.splice(store.todoList.indexOf(todo), 1)
-        },
-
-      archiveTodo(todo){
-          if (!todo.isDone) {
-              window.alert("Impossible d'archiver une tache en cours.")
-          }
-          else {
-              todo.isArchived = true
-          }
-      }
+        }
   }
 }
 </script>
