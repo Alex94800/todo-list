@@ -28,7 +28,7 @@
 </template>
 
 <script>
-    import store from '../config/store.js'
+    import store from '../../config/store.js'
     export default{
       data () {
         return {

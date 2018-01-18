@@ -14,7 +14,7 @@
 </style>
 
 <script>
-    import navbar from './components/Navbar'
+    import navbar from './components/layouts/Navbar'
 
     export default {
 

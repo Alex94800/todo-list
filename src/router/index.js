@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import CompleteList from '@/components/CompleteList'
+import TodoList from '@/components/TodoList'
 import AddTask from '@/components/AddTask'
 import ModifyTask from '@/components/ModifyTask'
 
@@ -12,7 +12,7 @@ export default new VueRouter({
   routes: [
     {
       path: '/',
-      component: CompleteList,
+      component: TodoList,
       props: {
         status: 'active'
       }
@@ -30,7 +30,7 @@ export default new VueRouter({
     {
       path: '/archived',
       name: 'archivedTodos',
-      component: CompleteList,
+      component: TodoList,
       props: {
         status: 'archived'
       }
@@ -38,7 +38,7 @@ export default new VueRouter({
     {
       path: '/all',
       name: 'allTodos',
-      component: CompleteList,
+      component: TodoList,
       props: {
         status: 'all'
       }

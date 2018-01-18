@@ -1,15 +1,15 @@
 <template>
     <div class="row text-center"
-    v-if="value.getIsArchived()">
+    v-if="todo.getIsArchived()">
       <br>
-        <strong>{{value.getName()}}</strong>
+        <strong>{{todo.getName()}}</strong>
     </div>
 </template>
 
 <script>
   export default {
     props: {
-      value: {
+      todo: {
         type: Object
       }
     }

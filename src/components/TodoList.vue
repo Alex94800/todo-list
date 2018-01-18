@@ -9,7 +9,7 @@
     <br>
     <div
     v-for="todo in store.todoList">
-      <component :is="viewTodo" :value="todo"></component>
+      <component :is="viewTodo" :todo="todo"></component>
     </div>
   </div>
 </template>
@@ -17,8 +17,8 @@
 <script>
 
 import store from '../config/store.js'
-import Todo from './Todo'
-import TodoArchived from './TodoArchived'
+import Todo from './todo/Todo'
+import TodoArchived from './todo/TodoArchived'
 
 export default {
 
