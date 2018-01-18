@@ -3,22 +3,29 @@
     <div class="container">
 
         <div class="row text-center">
-            <h2>Modifier une tache</h2>
+            <h2>{{$t('message.modifyTask')}}</h2>
         </div>
         <div class="row">
             <div class="col-sm-6 col-sm-offset-2">
-                <input class="form-control" type="text"
-                v-model="newName"
-                @keyup.enter="modifyTodo">
+                <div class="form-group" :class="{'has-error': emptyName}">
+                    <input class="form-control" type="text"
+                           v-model="newName"
+                           @keyup.enter="validateForm">
+                </div>
             </div>
             <div class="col-md-4">
                 <button class="btn btn-primary"
-                @click="modifyTodo">Modifier</button>
+                @click="validateForm">{{$t('button.modify')}}</button>
                 </button>
                 <router-link to="/">
-                    <button class="btn btn-danger">Retour</button>
+                    <button class="btn btn-danger">{{$t('button.abort')}}</button>
                     </button>
                 </router-link>
+            </div>
+        </div>
+        <div class="row" v-if="emptyName">
+            <div class="col-sm-6 col-sm-offset-2 alert alert-danger">
+                {{$t('message.error.modify')}}
             </div>
         </div>
     </div>
@@ -32,7 +39,8 @@
       data () {
         return {
           store,
-          newName: ''
+          newName: '',
+          emptyName: false
         }
       },
 
@@ -40,7 +48,19 @@
         modifyTodo () {
           store.todoList[this.$route.params.id].setName(this.newName)
           this.$router.push('/')
+        },
+        validateForm (e) {
+          if (this.newName === '') {
+            this.emptyName = true
+            e.preventDefault()
+          } else {
+            this.modifyTodo()
+          }
         }
+      },
+
+      mounted () {
+        this.newName = store.todoList[this.$route.params.id].getName()
       }
 
     }

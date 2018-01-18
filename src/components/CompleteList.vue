@@ -1,79 +1,24 @@
 <template>
   <div>
     <br><br>
-
-    <router-link to="/add" class="col-sm-1 col-sm-offset-1 btn btn-primary">Ajouter tache</router-link>
-      <div class="row"
-      v-if="showActive">
-        <div class="col-sm-10 col-sm-offset-1 text-center">
-          <br>
-          <table class="table">
-            <thead>
-              <tr>
-                <th class="text-center">Tache</th>
-                <th class="text-center">Fait</th>
-                <th class="text-center">Modifier</th>
-                <th class="text-center">Supprimer</th>
-                <th class="text-center">Archiver</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr 
-              v-for="todo in unarchivedList">
-                <td>{{todo.getName()}}</td>
-                <td>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" :checked="todo.getIsDone()" @click="todo.setIsDone(!todo.getIsDone())">
-                  </div>
-                </td>
-                <td>
-                  <router-link :to="'modify/' + store.todoList.indexOf(todo)" class="btn btn-xs btn-primary">
-                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>           
-                  </router-link>
-                </td>
-                <td>
-                  <button class="btn btn-xs btn-danger" 
-                  @click="destroyTodo(todo)">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>           
-                  </button>
-                </td>
-                <td>
-                  <button class="btn btn-xs btn-warning" 
-                  @click="todo.setIsArchived(true)">
-                    <span class="glyphicon glyphicon-download" aria-hidden="true"></span>           
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="row"
-      v-if="showArchived">
-        <div class="col-xs-10 col-xs-offset-1 text-center">
-          <br>
-          <table class="table">
-            <thead>
-              <tr>
-                <th class="text-center"><h2>Taches archivées</h2></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr 
-              v-for="todo in archivedList">
-                <td>{{todo.getName()}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+    <div class="row">
+      <router-link to="/add" class="col-sm-1 col-sm-offset-1 btn btn-primary">{{ $t("button.addTask")}}</router-link>
+    </div>
+    <br>
+    <h1 class="text-center">{{ $t("message.title") }}</h1>
+    <br>
+    <div
+    v-for="todo in store.todoList">
+      <component :is="viewTodo" :value="todo"></component>
+    </div>
   </div>
 </template>
 
 <script>
 
 import store from '../config/store.js'
+import Todo from './Todo'
+import TodoArchived from './TodoArchived'
 
 export default {
 
@@ -91,40 +36,34 @@ export default {
     }
   },
 
+  components: {
+    'todo': Todo,
+    'todo-archived': TodoArchived
+  },
+
   data () {
     return {
-      store
+      store,
+    }
+  },
+
+  methods:{
+    toggleLanguage(){
+      console.log(i18n)
     }
   },
 
   computed: {
-    showArchived () {
-      if (this.status === 'archived' || this.status === 'all') {
-        return true
+
+    viewTodo () {
+      if (this.status === 'active') {
+        return 'todo'
+      } else if (this.status === 'archived') {
+        return 'todo-archived'
       }
-    },
-
-    showActive () {
-      if (this.status === 'active' || this.status === 'all') {
-        return true
-      }
-    },
-
-    archivedList () {
-      return store.todoList.filter(todo => todo.getIsArchived())
-    },
-
-    unarchivedList () {
-      return store.todoList.filter(todo => !todo.getIsArchived())
-    }
-  },
-
-  methods: {
-
-    destroyTodo (todo) {
-      store.todoList.splice(store.todoList.indexOf(todo), 1)
     }
   }
+
 }
 </script>
 
