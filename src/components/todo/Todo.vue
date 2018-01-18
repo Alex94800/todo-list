@@ -53,14 +53,6 @@
       }
     },
 
-    computed: {
-      switchIsDone(){
-        if(props.todo.getIsDone()){
-          return ''
-        }
-      }
-    },
-
     methods: {
       destroyTodo (todo) {
         store.todoList.splice(store.todoList.indexOf(todo), 1)
