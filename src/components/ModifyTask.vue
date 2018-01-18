@@ -16,10 +16,8 @@
             <div class="col-md-4">
                 <button class="btn btn-primary"
                 @click="validateForm">{{$t('button.modify')}}</button>
-                </button>
                 <router-link to="/">
                     <button class="btn btn-danger">{{$t('button.abort')}}</button>
-                    </button>
                 </router-link>
             </div>
         </div>

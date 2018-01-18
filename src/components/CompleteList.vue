@@ -43,13 +43,7 @@ export default {
 
   data () {
     return {
-      store,
-    }
-  },
-
-  methods:{
-    toggleLanguage(){
-      console.log(i18n)
+      store
     }
   },
 

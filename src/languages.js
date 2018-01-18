@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import store from './config/store.js'
 
 Vue.use(VueI18n)
 
@@ -15,12 +14,12 @@ const messages = {
       completeList: 'Liste complète',
       todo: 'A faire',
       done: 'Fait',
-      error:{
+      error: {
         add: 'Veuillez ajouter une tache',
         modify: 'Veuillez entrer un nouveau nom pour la tache'
-      },
+      }
     },
-    button:{
+    button: {
       addTask: 'Ajouter tache',
       add: 'Ajouter',
       abort: 'Retour',
@@ -28,9 +27,9 @@ const messages = {
       destroy: 'Supprimer',
       archive: 'Archiver'
     },
-    form:{
-      placeholder:{
-        add:'Ajouter une tache'
+    form: {
+      placeholder: {
+        add: 'Ajouter une tache'
       }
     }
   },
@@ -44,7 +43,7 @@ const messages = {
       completeList: 'Complete List',
       todo: 'To do',
       done: 'Done',
-      error:{
+      error: {
         add: 'Please add a task',
         modify: 'Please add a new name for the task'
       }
@@ -57,9 +56,9 @@ const messages = {
       destroy: 'Delete',
       archive: 'Archive'
     },
-    form:{
-      placeholder:{
-        add:'Add a task'
+    form: {
+      placeholder: {
+        add: 'Add a task'
       }
     }
   }

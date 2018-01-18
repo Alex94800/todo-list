@@ -30,18 +30,15 @@
 <script>
     import store from '../config/store.js'
     export default{
-      data(){
-        return{
+      data () {
+        return {
           store
         }
       },
 
-      methods:{
-        changeLanguage(){
-            if(this.$i18n.locale === 'fr')
-              this.$i18n.locale = 'en'
-            else if(this.$i18n.locale === 'en')
-              this.$i18n.locale = 'fr'
+      methods: {
+        changeLanguage () {
+          if (this.$i18n.locale === 'fr') { this.$i18n.locale = 'en' } else if (this.$i18n.locale === 'en') { this.$i18n.locale = 'fr' }
         }
       }
     }
