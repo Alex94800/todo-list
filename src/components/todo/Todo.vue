@@ -6,13 +6,7 @@
 
         <div class="col-md-2">
             <div class="form-check">
-                <span
-                v-if="todo.getIsDone()">
-                    <strong>{{$t('message.done')}}</strong>
-                </span>
-                <span v-else>
-                    <strong>{{$t('message.todo')}}</strong>
-                </span>
+                <strong>{{ $t(todoLabel) }}</strong>
                 <input class="form-check-input" type="checkbox"
                        :checked="todo.getIsDone()"
                        @click="toggleIsDone(todo)">
@@ -53,6 +47,16 @@
       }
     },
 
+    computed: {
+      todoLabel(){
+        if(this.todo.getIsDone()){
+          return 'message.done'
+        } else{
+          return 'message.todo'
+        }
+      }
+    },
+
     methods: {
       destroyTodo (todo) {
         store.todoList.splice(store.todoList.indexOf(todo), 1)
@@ -63,9 +67,7 @@
       toggleIsDone(todo){
         todo.setIsDone(!todo.getIsDone())
       }
-    },
-
-    computed:{
     }
+
   }
 </script>
