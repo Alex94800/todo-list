@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import TodoList from '@/components/TodoList'
-import AddTask from '@/components/AddTask'
-import ModifyTask from '@/components/ModifyTask'
+import TodoList from '@/components/todo/TodoList'
+import AddTodo from '@/components/todo/AddTodo'
+import ModifyTodo from '@/components/todo/ModifyTodo'
 
 Vue.use(VueRouter)
 
@@ -19,13 +19,13 @@ export default new VueRouter({
     },
     {
       path: '/add',
-      name: 'addTask',
-      component: AddTask
+      name: 'addTodo',
+      component: AddTodo
     },
     {
       path: '/modify/:id(\\d+)',
       name: 'modifyTask',
-      component: ModifyTask
+      component: ModifyTodo
     },
     {
       path: '/archived',

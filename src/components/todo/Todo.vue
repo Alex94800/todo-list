@@ -6,13 +6,7 @@
 
         <div class="col-md-2">
             <div class="form-check">
-                <span
-                v-if="todo.getIsDone()">
-                    <strong>{{$t('message.done')}}</strong>
-                </span>
-                <span v-else>
-                    <strong>{{$t('message.todo')}}</strong>
-                </span>
+                <strong>{{$t(todoLabel)}}</strong>
                 <input class="form-check-input" type="checkbox"
                        :checked="todo.getIsDone()"
                        @click="toggleIsDone(todo)">
@@ -47,6 +41,7 @@
         type: Object
       }
     },
+
     data () {
       return {
         store
@@ -54,26 +49,35 @@
     },
 
     computed: {
-      switchIsDone(){
-        if(props.todo.getIsDone()){
-          return ''
+      todoLabel(){
+        if(this.todo.getIsDone()){
+          return 'message.done'
+        } else{
+          return 'message.todo'
         }
       }
     },
 
     methods: {
       destroyTodo (todo) {
-        store.todoList.splice(store.todoList.indexOf(todo), 1)
+        this.$http.delete('https://jsonplaceholder.typicode.com/todos/' + (store.todoList.indexOf(todo) + 1)).then(_ => {
+          this.$parent.getTodos()
+        })
       },
       archiveTodo(todo){
-        todo.setIsArchived(true)
+        if(todo.getIsDone()) {
+          todo.setIsArchived(true)
+        } else {
+          window.alert("Impossible d'archiver une tache non faite")
+        }
       },
       toggleIsDone(todo){
-        todo.setIsDone(!todo.getIsDone())
+        this.$http.put('https://jsonplaceholder.typicode.com/todos/' + (store.todoList.indexOf(todo) + 1), {
+          'completed': !todo.getIsDone()
+        }).then(_ => {
+          this.$parent.getTodos()
+        })
       }
-    },
-
-    computed:{
     }
   }
 </script>

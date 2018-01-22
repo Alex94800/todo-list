@@ -15,6 +15,8 @@
 
 <script>
     import navbar from './components/layouts/Navbar'
+    import store from './config/store.js'
+    import Todo from './models/Todo.js'
 
     export default {
 

@@ -31,7 +31,7 @@
 </template>
 
 <script>
-    import store from '../config/store.js'
+    import store from '../../config/store.js'
 
     export default {
       data () {
@@ -45,7 +45,11 @@
       methods: {
         modifyTodo () {
           store.todoList[this.$route.params.id].setName(this.newName)
-          this.$router.push('/')
+          this.$http.put('https://jsonplaceholder.typicode.com/todos/' + (parseInt(this.$route.params.id) + 1), {
+            'title': store.todoList[this.$route.params.id].getName()
+          }).then(response => {
+            this.$router.push('/')
+          })
         },
         validateForm (e) {
           if (this.newName === '') {

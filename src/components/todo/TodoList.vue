@@ -16,9 +16,10 @@
 
 <script>
 
-import store from '../config/store.js'
-import Todo from './todo/Todo'
-import TodoArchived from './todo/TodoArchived'
+import store from '../../config/store.js'
+import TodoActive from './Todo'
+import TodoArchived from './TodoArchived'
+import Todo from '../../models/Todo.js'
 
 export default {
 
@@ -37,7 +38,7 @@ export default {
   },
 
   components: {
-    'todo': Todo,
+    'todo': TodoActive,
     'todo-archived': TodoArchived
   },
 
@@ -56,6 +57,21 @@ export default {
         return 'todo-archived'
       }
     }
+  },
+
+  methods: {
+    getTodos(){
+      this.$http.get('https://jsonplaceholder.typicode.com/todos').then(response => {
+        response.body.forEach(e => {
+          store.todoList.push(new Todo(e.title, e.completed))
+        })
+      })
+    }
+  },
+
+  mounted(){
+    store.todoList = []
+    this.getTodos()
   }
 
 }

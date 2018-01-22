@@ -1,7 +1,7 @@
 class Todo {
-  constructor (name) {
+  constructor (name, isDone) {
     this.name = name
-    this.isDone = false
+    this.isDone = isDone
     this.isArchived = false
   }
 
