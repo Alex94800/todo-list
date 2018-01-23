@@ -6,9 +6,14 @@
                     <router-link to="/"><a class="navbar-brand">Todo List</a></router-link>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li><router-link :to="{path: '/'}">{{ $t("message.activeList") }}</router-link></li>
-                    <li><router-link :to="{name: 'archivedTodos'}">{{ $t("message.archivedList") }}</router-link></li>
-                    <li><router-link :to="{name: 'allTodos'}">{{ $t("message.completeList")}}</router-link></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Listes<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><router-link :to="{path: '/'}">{{ $t("message.activeList") }}</router-link></li>
+                            <li><router-link :to="{name: 'archivedTodos'}">{{ $t("message.archivedList") }}</router-link></li>
+                            <li><router-link :to="{name: 'allTodos'}">{{ $t("message.completeList")}}</router-link></li>
+                        </ul>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
