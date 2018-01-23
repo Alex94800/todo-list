@@ -7,7 +7,7 @@
                 </div>
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Listes<span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ $t("message.list") }}<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><router-link :to="{path: '/'}">{{ $t("message.activeList") }}</router-link></li>
                             <li><router-link :to="{name: 'archivedTodos'}">{{ $t("message.archivedList") }}</router-link></li>
